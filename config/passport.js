@@ -8,8 +8,8 @@ module.exports = function () {
 	passport.use(
 		new GitHubStrategy(
 			{
-				clientID: 'e11eebf697efef6e55e6',
-				clientSecret: 'b9f9b3fa687434de3aa937d66cd4af3abd412ddf',
+				clientID: 'a1ef0422b4dbdf86817f',
+				clientSecret: 'f4b9dda958a3c4277e160cd32a0c5d3159220e2f',
 				callbackURL:
 					'https://dswa5-14-ac-pt300984x.herokuapp.com/auth/github/callback',
 			},
