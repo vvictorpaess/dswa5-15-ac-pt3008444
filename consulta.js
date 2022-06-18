@@ -1,33 +1,30 @@
-const { MongoClient } = require('mongodb');
-// or as an es module:
-// import { MongoClient } from 'mongodb'
-
-// Connection URL
-const url =
-	'mongodb://dswa5:dswa5@cluster0-shard-00-00.ig8hl.mongodb.net:27017,cluster0-shard-00-01.ig8hl.mongodb.net:27017,cluster0-shard-00-02.ig8hl.mongodb.net:27017/ifsp?ssl=true&replicaSet=atlas-y7duym-shard-0&authSource=admin&retryWrites=true&w=majority';
-const client = new MongoClient(url);
-
-// Database Name
-const dbName = 'ifsp';
-
-async function main() {
-	// Use connect method to connect to the server
-	console.log('Aluno: Victor Paes');
-	await client.connect();
-	console.log('Connected successfully to server');
-	const db = client.db(dbName);
+const findDocuments = function(db, callback) {
+	// Get the documents collection
 	const collection = db.collection('contatos');
-
-	// the following code examples can be pasted here...
-
-	console.log('Foram encontrados os seguintes docs');
-	const findResult = await collection.find({}).toArray();
-	console.log('Found documents =>', findResult);
-
-	return 'done.';
-}
-
-main()
-	.then(console.log)
-	.catch(console.error)
-	.finally(() => client.close());
+	// Find some documents
+	collection.find({}).toArray(function(err, docs) {
+		assert.equal(err, null);
+		console.log("Foram encontrados os seguintes docs:");
+		console.log(docs)
+		callback(docs);
+	});
+ };
+ const MongoClient = require('mongodb').MongoClient;
+ const assert = require('assert');
+ // Connection URL
+ const url = 'mongodb+srv://dswa5:dswa5@cluster0.ig8hl.mongodb.net/?retryWrites=true&w=majority';
+ // Database Name
+ const dbName = 'ifsp';
+ // Use connect method to connect to the server
+ MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, function(err, client) {
+	assert.equal(null, err);
+	console.log("Aluno: Victor Paes");
+	console.log("Servidor conectado!");
+ 
+	const db = client.db(dbName);
+ 
+	findDocuments(db, function() {
+		client.close();
+	});
+ 
+ });
