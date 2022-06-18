@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 
 // Connection URL
 const url =
-	'mongodb://dswa5:dswa5@cluster0-shard-00-00.bodcm.mongodb.net:27017,cluster0-shard-00-01.bodcm.mongodb.net:27017,cluster0-shard-00-02.bodcm.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-fbwbp2-shard-0&authSource=admin&retryWrites=true&w=majority';
+	'mongodb://dswa5:dswa5@cluster0-shard-00-00.ig8hl.mongodb.net:27017,cluster0-shard-00-01.ig8hl.mongodb.net:27017,cluster0-shard-00-02.ig8hl.mongodb.net:27017/?ssl=true&replicaSet=atlas-y7duym-shard-0&authSource=admin&retryWrites=true&w=majority';
 const client = new MongoClient(url);
 
 // Database Name
@@ -12,7 +12,7 @@ const dbName = 'ifsp';
 
 async function main() {
 	// Use connect method to connect to the server
-	console.log('Aluno: Thiago Ferreira');
+	console.log('Aluno: Victor Paes');
 	await client.connect();
 	console.log('Connected successfully to server');
 	const db = client.db(dbName);
